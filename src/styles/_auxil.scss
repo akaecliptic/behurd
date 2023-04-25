@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@500;700&display=swap');
+
+// VARIABLES
+
+$color-primary: #05BEFE;
+$color-secondary: #8F00FF;
+$color-background: #090909;
+$color-background-card: black;
+$color-text: white;
+$color-text-secondary: #AAAAAA;
+
+$font-main: 'DM Sans', sans-serif;
+$font-loud: 'Archivo Black', sans-serif;
+
+$layer-aside: 5;
+$layer-float: 3;
+$layer-foreground: 1;
+
+$screen-min: 320px;
+$screen-max: 2000px;
+
+$screen-small: 700px;
+$screen-medium: 1050px;
+$screen-large: 1400px;
+
+// MIXINS
+
+@mixin card {
+    border-radius: 1rem;
+    background-color: $color-background-card;
+
+    p > {
+        color: $color-text-secondary;
+    }
+}
+
+@mixin clicky-icon {
+    transition: color .15s ease-in, filter .2s ease-in;
+
+    &:hover {
+        filter: drop-shadow(0 0 .25rem $color-primary);
+    }
+
+    &:active {
+        color: $color-primary;
+    }
+}
+
+@mixin responsive($range) {
+    @if $range == 1 {
+        @media only screen and (max-width: $screen-small) {
+            @content;
+        }
+    }
+    @else if $range == 2 {
+        @media only screen and (min-width: $screen-small) and (max-width: $screen-large) {
+            @content;
+        }
+    }
+    @else if $range == 3 {
+        @media only screen and (min-width: $screen-large) {
+            @content;
+        }
+    }
+}
+
+@mixin breakpoint-responsive($breakpoint) {
+    @if $breakpoint == $screen-min {
+        @media only screen and (max-width: $screen-min) {
+            @content;
+        }
+    }
+    @else if $breakpoint == $screen-small {
+        @media only screen and (min-width: $screen-min) and (max-width: $screen-small) {
+            @content;
+        }
+    }
+    @else if $breakpoint == $screen-medium {
+        @media only screen and (min-width: $screen-small) and (max-width: $screen-medium) {
+            @content;
+        }
+    }
+    @else if $breakpoint == $screen-large {
+        @media only screen and (min-width: $screen-medium) and (max-width: $screen-large) {
+            @content;
+        }
+    }
+    @else if $breakpoint == & {
+        @media only screen and (min-width: $screen-large) {
+            @content;
+        }
+    }
+}

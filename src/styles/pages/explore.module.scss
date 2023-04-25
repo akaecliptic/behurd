@@ -1,0 +1,44 @@
+@use '../_auxil.scss';
+
+main.container {
+    width: 70%;
+    max-width: 1500px;
+
+    margin: 6rem auto 0;
+
+    display: grid;
+    gap: 1rem;
+    
+    @include auxil.responsive(1) {
+        width: 95%;
+        display: flex;
+        margin: 4rem auto 0;
+        flex-direction: column;
+
+        > span {
+            margin: auto;
+        }
+    }
+
+    @include auxil.responsive(2) {
+        width: 80%;
+        grid-template-columns: repeat(2, 1fr);
+
+        > span {
+            grid-column: span 2;
+        }
+    }
+
+    @include auxil.breakpoint-responsive(auxil.$screen-medium) {
+        width: 85%;
+        grid-template-columns: 1fr;
+    }
+
+    @include auxil.responsive(3) {
+        grid-template-columns: repeat(3, 1fr);
+
+        > span {
+            grid-column: span 3;
+        }
+    }
+}

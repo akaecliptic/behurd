@@ -1,0 +1,81 @@
+@use '../_auxil.scss';
+
+// SONG
+
+a.song {
+    padding: .5rem 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    border-radius: .5rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: lighten(auxil.$color-background-card, 10%);
+    }
+
+    > img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: .5rem;
+        object-fit: cover;
+        user-select: none;
+    }
+
+    > h2 {
+        flex: 1;
+    }
+}
+
+// ALBUM
+
+a.album {
+    padding: .5rem 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    border-radius: .5rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: lighten(auxil.$color-background-card, 10%);
+    }
+
+    > img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: .5rem;
+        object-fit: cover;
+        user-select: none;
+    }
+
+    > h2 {
+        flex: 1;
+    }
+
+    > h4 {
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+    }
+}
+
+// RESPONSIVE
+
+@include auxil.responsive(1) {
+    a.album, a.song {
+        font-size: .7rem;
+
+        > h2 {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}

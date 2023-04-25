@@ -1,0 +1,138 @@
+@use '../_auxil.scss';
+
+main.container {
+    width: 70%;
+
+    margin: 5rem auto 0;
+
+    display: grid;
+    column-gap: 1rem;
+    row-gap: .5rem;
+    grid-template: 
+        'a a' min-content
+        'b c' min-content 
+        'd d' auto / 1fr 1fr;
+    
+    section {
+        display: flex;
+        @include auxil.card;
+    }
+
+    > .similar, > .works, > .albums {
+        gap: 1rem;
+        justify-items: center;
+        flex-direction: column;
+
+        > h2 {
+            text-align: center;
+        }
+    }
+
+    > .profile {
+        grid-area: a;
+    }
+
+    > .works {
+        grid-area: b;
+    }
+
+    > .albums {
+        grid-area: c;
+    }
+
+    > .similar {
+        grid-area: d;
+    }
+
+    @include auxil.responsive(1) {
+        width: 95%;
+        display: flex;
+        margin: 4rem auto 0;
+        flex-direction: column;
+    }
+
+    @include auxil.responsive(2) {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+// ARTIST PROFILE
+
+section.profile {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    > img {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 100%;
+    }
+}
+
+section.profile > .info {
+    display: flex;
+    flex-direction: column;
+
+    > .artist {
+        display: flex;
+        flex-direction: column;
+
+        > span {
+            font-size: .9rem;
+            line-height: 1;
+        }
+
+        @include auxil.responsive(3) {
+            gap: .5rem;
+            flex-direction: row;
+            align-items: flex-end;
+        }
+    }
+
+    > .about {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        
+        > p {
+            display: flex;
+            font-size: .9rem;
+            align-items: center;
+            gap: .25rem;
+        }
+        
+        > a {
+            font-size: 1.5rem;
+            @include auxil.clicky-icon;
+        }
+    }
+}
+
+// ARTIST WORKS & ALBUMS
+
+section.works, section.albums {
+    height: min-content;
+    padding: 1rem .5rem;
+
+    > div {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+// SIMILAR ARTISTS
+
+section.similar {
+    padding: 1rem;
+
+    > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}

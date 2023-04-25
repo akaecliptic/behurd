@@ -1,0 +1,146 @@
+@use '../_auxil.scss';
+
+main.container {
+    width: 100%;
+    margin: 7rem auto 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+
+    > .topic {
+        width: 70%;
+        max-width: 700px;
+
+        margin: 0 auto;
+
+        z-index: auxil.$layer-foreground;
+
+        span, p, h2, h3, h4, h5 {
+            text-align: center;
+        }
+    }
+
+    > .topic.wide {
+        width: 80%;
+        max-width: 900px;
+    }
+
+    @include auxil.responsive(1) {
+        margin: 4rem auto 0;
+        gap: 5rem;
+
+        > .topic, > .topic.wide {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+section > .heading {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > h2 {
+        font-size: 1.75rem;
+    }
+}
+
+// INTRODUCTION
+
+section > .picks {
+    padding: 2rem;
+
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+
+    @include auxil.card;
+
+    > .text {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+    }
+
+    > .artists {
+        display: flex;
+    }
+}
+
+// MISSION & TECHNOLOGIES
+
+section > .missions,
+section > .technologies {
+    display: flex;
+    gap: 1rem;
+
+    > div {
+        padding: 2rem 1rem;
+        
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        @include auxil.card;
+
+        > svg {
+            font-size: 1.75rem;    
+        }
+    }
+}
+
+// TECHNOLOGIES SPECIFIC
+
+section > .technologies > div {
+    background: linear-gradient(180deg, auxil.$color-primary 0%, auxil.$color-secondary 100%);
+    
+    > div {
+        height: 3rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    img {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    svg {
+        color: black;
+        font-size: 3rem;    
+    }
+}
+
+// BOTTOM SPLASH
+
+div.splash {
+    width: 100%;
+    height: 20vw;
+
+    position: relative;
+    bottom: 0;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('/images/splash_name.svg');
+    mask-image: linear-gradient(180deg, rgba(auxil.$color-background, .5) 0%, rgba(auxil.$color-background, 0) 90%);
+    
+    user-select: none;
+}
+
+// RESPONSIVE
+
+@include auxil.responsive(1) {
+    div.missions, div.technologies {
+        display: flex;
+        flex-direction: column;
+    }
+}

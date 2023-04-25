@@ -1,0 +1,93 @@
+@use './auxil.scss';
+
+// GLOBAL
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+
+	font-family: auxil.$font-main;
+}
+
+// STRUCTURE
+
+html,
+body {
+	max-width: 100vw;
+	height: 100%;
+
+	color: auxil.$color-text;
+	background: auxil.$color-background;
+}
+
+body.full {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+
+	// SPLASH ART BACKGORUND 
+	background-size: contain;
+	background-position: center 50%;
+    background-repeat: no-repeat;
+	background-image: url('/images/splash_sound.svg');
+
+	> main {
+		flex: 1;
+	}
+}
+
+// TEXT
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+div,
+span {
+	font-weight: 500;
+
+	&::selection {
+		color: black;
+		background-color: auxil.$color-text;
+	}
+}
+
+h1 {
+	font-family: auxil.$font-loud;
+}
+
+h2 {
+	font-weight: 700;
+}
+
+p {
+	color: auxil.$color-text-secondary;
+}
+
+span {
+	color: auxil.$color-primary;
+}
+
+a {
+	display: flex;
+	gap: .1rem;
+
+	color: auxil.$color-text;
+	font-weight: 500;
+	text-decoration: none;
+
+	&::selection {
+		color: black;
+		background-color: auxil.$color-primary;
+	}
+}
+
+// STREAMABLES
+
+span.feedback-text {
+	place-self: center;
+	text-align: center;
+}
