@@ -71,7 +71,7 @@ export const search = async <T extends Artist>(query: string, searchType: Spotif
         const options = await createOptions('GET');
         const encodedQuery: string = encodeURIComponent(query);
 
-        const response = await fetch(`${SEARCH_ENDPOINT}q=${encodedQuery}&type=${searchType}`, options);
+        const response = await fetch(`${SEARCH_ENDPOINT}q=${encodedQuery}&type=${searchType}&limit=10`, options);
         
         const data = await response.json() as SearchResult<T>;
         return data;
@@ -136,7 +136,7 @@ export const albums = async (artist: string, market: string = 'GB'): Promise<Sim
     try {
         const options = await createOptions('GET');
 
-        const response = await fetch(`${ARTISTS_ENDPOINT}/${artist}/albums?include_groups=album,single&market=${market}&limit=50`, options);
+        const response = await fetch(`${ARTISTS_ENDPOINT}/${artist}/albums?include_groups=album,single&market=${market}&limit=10`, options);
         
         const data = await response.json() as PaginateCollection<SimplifiedAlbum>;
         const names = new Set<string>();
@@ -156,7 +156,7 @@ export const charts = async (market: string = 'GB'): Promise<ArtistCollection> =
     try {
         const options = await createOptions('GET');
 
-        const response = await fetch(`${PLAYLIST_ENDPOINT}/${TRENDING_PLAYLIST}/tracks?market=${market}&limit=50`, options);
+        const response = await fetch(`${PLAYLIST_ENDPOINT}/${TRENDING_PLAYLIST}/tracks?market=${market}&limit=10`, options);
         
         const data = await response.json() as PaginateCollection<PlaylistTrack>;
         const names: string[] = [];
@@ -176,7 +176,7 @@ export const random = async (market: string = 'GB'): Promise<Artist> => {
     try {
         const options = await createOptions('GET');
 
-        const response = await fetch(`${PLAYLIST_ENDPOINT}/${getRandomPlaylist()}/tracks?market=${market}&limit=50`, options);
+        const response = await fetch(`${PLAYLIST_ENDPOINT}/${getRandomPlaylist()}/tracks?market=${market}&limit=10`, options);
         
         const data = await response.json() as PaginateCollection<PlaylistTrack>;
 
