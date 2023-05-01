@@ -9,3 +9,5 @@ To run it for yourself, simply:
 + Replace the environment variables in .env  
 + Run `npm install`
 + Run `npm run dev` OR `npm run build` then `npm start`
+
+Website - https://behurd.onrender.com
