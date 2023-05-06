@@ -71,7 +71,7 @@ export const search = async <T extends Artist>(query: string, searchType: Spotif
         const options = await createOptions('GET');
         const encodedQuery: string = encodeURIComponent(query);
 
-        const response = await fetch(`${SEARCH_ENDPOINT}q=${encodedQuery}&type=${searchType}&limit=13`, options);
+        const response = await fetch(`${SEARCH_ENDPOINT}q=${encodedQuery}&type=${searchType}&limit=24`, options);
         
         const data = await response.json() as SearchResult<T>;
         return data;
@@ -136,7 +136,7 @@ export const albums = async (artist: string, market: string = 'GB'): Promise<Sim
     try {
         const options = await createOptions('GET');
 
-        const response = await fetch(`${ARTISTS_ENDPOINT}/${artist}/albums?include_groups=album,single&market=${market}&limit=6`, options);
+        const response = await fetch(`${ARTISTS_ENDPOINT}/${artist}/albums?include_groups=album,single&market=${market}`, options);
         
         const data = await response.json() as PaginateCollection<SimplifiedAlbum>;
         const names = new Set<string>();
@@ -156,7 +156,7 @@ export const charts = async (market: string = 'GB'): Promise<ArtistCollection> =
     try {
         const options = await createOptions('GET');
 
-        const response = await fetch(`${PLAYLIST_ENDPOINT}/${TRENDING_PLAYLIST}/tracks?market=${market}&limit=13`, options);
+        const response = await fetch(`${PLAYLIST_ENDPOINT}/${TRENDING_PLAYLIST}/tracks?market=${market}&limit=35`, options);
         
         const data = await response.json() as PaginateCollection<PlaylistTrack>;
         const names: string[] = [];
@@ -164,7 +164,7 @@ export const charts = async (market: string = 'GB'): Promise<ArtistCollection> =
         data.items.forEach( 
             item => (!names.includes(item.track.artists[0].id)) && names.push(item.track.artists[0].id)
         );
-        const artists = names.slice(0, 12).join(',');
+        const artists = names.slice(0, 24).join(',');
 
         return await several_artists(artists);
     } catch (error) {
@@ -176,7 +176,7 @@ export const random = async (market: string = 'GB'): Promise<Artist> => {
     try {
         const options = await createOptions('GET');
 
-        const response = await fetch(`${PLAYLIST_ENDPOINT}/${getRandomPlaylist()}/tracks?market=${market}&limit=6`, options);
+        const response = await fetch(`${PLAYLIST_ENDPOINT}/${getRandomPlaylist()}/tracks?market=${market}&limit=35`, options);
         
         const data = await response.json() as PaginateCollection<PlaylistTrack>;
 
