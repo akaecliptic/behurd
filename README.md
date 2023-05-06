@@ -10,4 +10,4 @@ To run it for yourself, simply:
 + Run `npm install`
 + Run `npm run dev` OR `npm run build` then `npm start`
 
-Website - https://behurd.onrender.com
+Website - <https://behurd.vercel.app>
